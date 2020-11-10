@@ -1,0 +1,108 @@
+Parameters:
+  Bucket:
+    Type: String
+    Description: Bucket name where files are stored
+  Key:
+    Type: String
+    Description: Zip file name
+    Default: package.zip
+  Lambdahandler:
+    Type: String
+    Description: Name of the python file(lambda handler)
+    Default: lambda_function
+  webhook:
+    Type: String
+    Description: Webhook of the discord server
+  OtherAccountNumber:
+    AllowedPattern: '[0-9]+'
+    Description: The 12 digit AWS account number to grant access to.
+    MaxLength: '12'
+    MinLength: '12'
+    Type: String
+    Default: 634729597623 
+
+Resources:
+  LambdaIamRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Principal:
+              Service:
+                - 'lambda.amazonaws.com'
+            Action:
+              - 'sts:AssumeRole'
+      Path: '/'
+      Policies:
+        - PolicyName: Discordbotpolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'tag:GetResources'
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                  - 'sns:*'
+                Resource: '*'
+   
+  LambdaFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Code:
+        S3Bucket: !Ref Bucket
+        S3Key: !Ref Key
+      Handler: !Sub '${Lambdahandler}.lambda_handler'
+      Role: !GetAtt LambdaIamRole.Arn
+      Runtime: python3.6
+      Timeout: 50
+      Environment:
+        Variables:
+          webhook: !Ref webhook
+          
+  Dome9Sns:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - Endpoint:
+             Fn::GetAtt: 
+               - "LambdaFunction" 
+               - "Arn"
+          Protocol: lambda
+    DependsOn: 
+        - LambdaFunction
+      
+      
+  LambdaInvokePermission: 
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref Dome9Sns
+      FunctionName: 
+           Fn::GetAtt: 
+             - "LambdaFunction" 
+             - "Arn"
+  mysnspolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      Topics:
+      - !Ref Dome9Sns
+      PolicyDocument:
+        Statement:
+        - Action: 'sns:Publish'
+          Sid : '1'
+          Effect: Allow
+          Resource: !Sub "${Dome9Sns}"
+          Principal:
+            AWS: !Sub arn:aws:iam::${OtherAccountNumber}:root
+        - Action: 'sns:Subscribe'
+          Sid: '2'
+          Effect: Allow
+          Resource: !Sub "${Dome9Sns}"
+          Principal:
+            AWS: !Sub arn:aws:iam::${OtherAccountNumber}:root
+
