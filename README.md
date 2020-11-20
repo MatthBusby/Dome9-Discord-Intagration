@@ -1,5 +1,5 @@
 # Dome9-Discord-Intagration
-Step 1 – Create Discord Webhook
+**Step 1 – Create Discord Webhook**
 
   1.	Open Discord, and either:
     a.	Create a new channel
@@ -12,7 +12,7 @@ Step 1 – Create Discord Webhook
   5.	Note the URL from the WEBHOOK URL field
   6.	Click the Save butto
 
-Step 2 - Deploying AWS enviroment
+**Step 2 - Deploying AWS enviroment**
 
   1. Download this repo.
   2. Create an S3 bucket
@@ -28,7 +28,7 @@ Step 2 - Deploying AWS enviroment
    
    $ aws cloudformation deploy --template-file C:\GitHub\d9\sample.yml --stack-name test --parameter-overrides Bucket=discord-d9 webhook="WEBHOOK" --capabilities CAPABILITY_IAM
 
-Step 3 – Enable Dome9 SNS Integration
+**Step 3 – Enable Dome9 SNS Integration**
 
   1.	In the Dome9 Console, navigate to Settings > Integrations
   2.	Under SNS, click ENABLE
