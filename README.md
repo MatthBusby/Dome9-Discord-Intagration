@@ -2,8 +2,11 @@
 Step 1 – Create Discord Webhook
   1.	Open Discord, and either:
     a.	Create a new channel
+      
       i.	Click the Add a Server (+) button in the left-hand pane
+      
       ii.	Click Create My Own, enter a Server Name, and click Create
+    
     b.	Or select the channel you wish to receive event notifications
   2.	From the channel menu, select Edit channel
   3.	Click on Webhooks menu item
