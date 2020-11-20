@@ -19,6 +19,12 @@ Step 2 - Deploying AWS enviroment
   3. Upload Package.zip to S3 bucket
   4. Run CloudFormation template
   5. Copy the SNS Topic ARN
+  
+  *Sample Commands*
+  aws s3 mb s3://discord-d9
+  s3 cp ./package.zip s3://discord-d9 --acl public-read
+
+  aws cloudformation deploy --template-file C:\GitHub\d9\sample.yml --stack-name test --parameter-overrides Bucket=discord-d9 webhook="WEBHOOK" --capabilities CAPABILITY_IAM
 
 Step 3 – Enable Dome9 SNS Integration
 
