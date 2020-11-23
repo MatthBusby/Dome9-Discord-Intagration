@@ -1,7 +1,23 @@
 # Dome9-Discord-Intagration
+By:      
+-David Zehner  
+-Matthew Busby
 
-![Build](https://github.com/MatthBusby/Dome9-Discord-Intagration/edit/main/)
+**Solution Overview**
 
+Proper log management and notifications are paramount to keep your environment secure and compliant. With Dome9’s SNS integration, customers are able to push events into a SIEM or log management tool of their choice. We can also take these notifications and push them to Discord to provide updates in real time. 
+
+
+
+
+
+**Workflow**
+
+
+![Build](https://github.com/MatthBusby/Dome9-Discord-Intagration/blob/main/Drawing2.png)
+
+
+**How To**
 
 **Step 1 – Create Discord Webhook**
 
@@ -26,7 +42,7 @@
   
   *Sample Commands*
   
-   $ aws s3 mb s3://discord-d9
+   $ aws s3 mb s3://discord-d9 
    
    $ aws s3 cp ./package.zip s3://discord-d9 --acl public-read
    
