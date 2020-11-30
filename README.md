@@ -35,7 +35,7 @@ Proper log management and notifications are paramount to keep your environment s
       5.	Note the URL from the WEBHOOK URL field
       6.	Click the Save button
 
-**Step 2 - Deploying AWS enviroment**
+**Step 2 - Deploying AWS environment**
 
   1. Download this repo.
   2. Create an S3 bucket
