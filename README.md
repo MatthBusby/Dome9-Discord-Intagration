@@ -22,18 +22,18 @@ Proper log management and notifications are paramount to keep your environment s
 **Step 1 – Create Discord Webhook**
 
   1.	Open Discord, and either:        
-    a.	Create a new channel
     
-          - Click the Add a Server (+) button in the left-hand pane
-          - Click Create My Own, enter a Server Name, and click Create         
+    a. Create a new channel
+    
+      1.    Click the Add a Server (+) button in the left-hand pane
+      2.    Click Create My Own, enter a Server Name, and click Create         
    
-   b.	Or select the channel you wish to receive event notifications
-  
-  2.	From the channel menu, select Edit channel
-  3.	Click on Webhooks menu item
-  4.	Click the Create Webhook button and fill in the name of the bot that will post the messages
-  5.	Note the URL from the WEBHOOK URL field
-  6.	Click the Save butto
+    b. Or select the channel you wish to receive event notifications      
+      2.	From the channel menu, select Edit channel  
+      3.	Click on Webhooks menu item  
+      4.	Click the Create Webhook button and fill in the name of the bot that will post the messages
+      5.	Note the URL from the WEBHOOK URL field
+      6.	Click the Save button
 
 **Step 2 - Deploying AWS enviroment**
 
