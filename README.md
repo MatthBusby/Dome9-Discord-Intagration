@@ -1,4 +1,4 @@
-# Dome9-Discord-Intagration
+# Dome9-Discord-Integration
 By:      
 -David Zehner  
 -Matthew Busby
